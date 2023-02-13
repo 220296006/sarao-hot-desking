@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/cli": "^15.1.2",
+    "logrocket-ngrx": "^0.1.1"
+  }
+}

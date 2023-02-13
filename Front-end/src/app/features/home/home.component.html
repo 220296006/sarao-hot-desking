@@ -1,0 +1,83 @@
+<h1 align="center" font="bold">{{title}}</h1>
+
+<body>
+  <div class="mat-elevation-z8">
+
+    <div>
+      <a mat-raised-button color="primary" (click)="bookDesk('')" style="margin: 1%">Book A Desk</a>
+    </div>
+
+    <table mat-table [dataSource]="finalUserData" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="floor_id">
+        <th mat-header-cell *matHeaderCellDef> Floor ID </th>
+        <td mat-cell *matCellDef="let floor"> {{ floor.floor_id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="floor_name">
+        <th mat-header-cell *matHeaderCellDef> Floor Name </th>
+        <td mat-cell *matCellDef="let floor"> {{ floor.floor_name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="building_name">
+        <th mat-header-cell *matHeaderCellDef> Building Name </th>
+        <td mat-cell *matCellDef="let floor"> {{ floor.building_name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="office_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Office Name</th>
+        <td mat-cell *matCellDef="let floor">
+          <ng-container *ngFor="let office of floor.offices">
+            {{ office.office_name }}
+          </ng-container>
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="capacity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity</th>
+        <td mat-cell *matCellDef="let floor">
+          <ng-container *ngFor="let office of floor.offices">
+            {{ office.capacity }}
+          </ng-container>
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="desk_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Desk Id</th>
+        <td mat-cell *matCellDef="let floor">
+          <ng-container *ngFor="let office of floor.offices">
+            <ng-container *ngFor="let desk of office.desks">
+              {{ desk.desk_id }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="occupied">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Occupied</th>
+        <td mat-cell *matCellDef="let floor">
+          <ng-container *ngFor="let office of floor.offices">
+            <ng-container *ngFor="let desk of office.desks">
+              {{ desk.occupied }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let floor">
+          <button mat-icon-button color="primary">
+            <mat-icon (click)="editOffice(floor.floor_id)">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon (click)="deleteOffice(floor.floor_id)">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
