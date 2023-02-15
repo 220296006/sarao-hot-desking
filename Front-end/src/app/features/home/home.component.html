@@ -1,13 +1,51 @@
 <h1 align="center" font="bold">{{title}}</h1>
+    <div><a mat mat-raised-button color="warn"(click)="userLogin('')"style="margin: 1%" align="center">Employee Login</a><a mat-raised-button color="primary" (click)="bookDesk('')" style="margin: 1%">Book Desk</a></div> 
 
-<body>
-  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="finalUserData" [dataSource]="finalDeskData" matSort class="mat-elevation-z8">
+      
+      <ng-container matColumnDef="employee_id">
+        <th mat-header-cell *matHeaderCellDef> Employee ID </th>
+        <td mat-cell *matCellDef="let user"> {{ user.employee_id }} </td>
+      </ng-container>
 
-    <div>
-      <a mat-raised-button color="primary" (click)="bookDesk('')" style="margin: 1%">Book A Desk</a>
-    </div>
+      <ng-container matColumnDef="employee_name">
+        <th mat-header-cell *matHeaderCellDef> Employee Name </th>
+        <td mat-cell *matCellDef="let user"> {{ user.employee_name }} </td>
+      </ng-container>
 
-    <table mat-table [dataSource]="finalUserData" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> Position </th>
+        <td mat-cell *matCellDef="let user"> {{ user.position }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bookingDate">
+        <th mat-header-cell *matHeaderCellDef> Date Booked </th>
+        <td mat-cell *matCellDef="let user"> {{ user.bookingDate }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-icon-button color="primary">
+            <mat-icon (click)="editUser(user.employee_id)">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon (click)="deleteUser(user.employee_id)">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+     
+      <ng-container matColumnDef="employee_id">
+        <th mat-header-cell *matHeaderCellDef> Employee ID </th>
+        <td mat-cell *matCellDef="let floor"> 
+          <ng-container *ngFor="let office of floor.offices">
+            <ng-container *ngFor="let desk of office.desks">
+              {{ desk.employee_id }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="floor_id">
         <th mat-header-cell *matHeaderCellDef> Floor ID </th>
         <td mat-cell *matCellDef="let floor"> {{ floor.floor_id }} </td>
@@ -20,7 +58,7 @@
 
       <ng-container matColumnDef="building_name">
         <th mat-header-cell *matHeaderCellDef> Building Name </th>
-        <td mat-cell *matCellDef="let floor"> {{ floor.building_name }} </td>
+        <td mat-cell *matCellDef="let floor"> {{ floor.building_name }} </td>s
       </ng-container>
 
       <ng-container matColumnDef="office_name">
@@ -31,7 +69,7 @@
           </ng-container>
         </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="capacity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity</th>
         <td mat-cell *matCellDef="let floor">
@@ -40,7 +78,7 @@
           </ng-container>
         </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="desk_id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Desk Id</th>
         <td mat-cell *matCellDef="let floor">
@@ -67,10 +105,10 @@
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let floor">
           <button mat-icon-button color="primary">
-            <mat-icon (click)="editOffice(floor.floor_id)">edit</mat-icon>
+            <mat-icon (click)="editDesk(floor.floor_id)">edit</mat-icon>
           </button>
           <button mat-icon-button color="warn">
-            <mat-icon (click)="deleteOffice(floor.floor_id)">delete</mat-icon>
+            <mat-icon (click)="deleteDesk(floor.floor_id)">delete</mat-icon>
           </button>
         </td>
       </ng-container>
@@ -79,5 +117,5 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"> 
     </mat-paginator>

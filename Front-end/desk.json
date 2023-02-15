@@ -1,0 +1,45 @@
+{
+  "floors": [
+    {
+      "floor_id": 1,
+      "floor_name": "First Floor",
+      "building_name": "SARAO Black River Park",
+      "offices": [
+        {
+          "office_name": "Admin Office",
+          "floor_id": 1,
+          "capacity": 4,
+          "desks": [
+            {
+              "desk_id": "Desk A",
+              "floor_id": 1,
+              "employee_id": 1,
+              "occupied": true
+            }
+          ]
+        },
+        {
+          "floor_id": 2,
+          "floor_name": "Second Floor",
+          "building_name": "SARAO Nothern Cape",
+          "offices": [
+            {
+              "office_name": "Science Department Office",
+              "floor_id": 2,
+              "capacity": 4,
+              "desks": [
+                {
+                  "desk_id": "Desk B",
+                  "floor_id": 2,
+                  "office_id": 103,
+                  "employee_id": 2,
+                  "occupied": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
