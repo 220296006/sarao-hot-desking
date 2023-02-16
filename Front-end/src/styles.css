@@ -1,4 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-input {
+    display: block;
+    width: 350px;
+    height: 30;
+    font-size: 1em;
+    line-height: 1.5;
+    color: rgb(136,152,170);
+    background-color: rgb(255,255,255);
+    box-shadow: none;
+    padding: 0.6rem 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(202, 209,215);
+    border-radius: 0,25rem;
+    transform: all 0.2s;
+    margin-top: 0,5rem
+}
+
+mat-label {
+    color:rgb(116, 130, 146) ;
+
+}
+
+mat-button {
+    display: block;
+    color: rgb(255,255,255);
+    background-color: rgb(94, 114, 228);
+    box-shadow: rgba(50, 50, 93, 0.11) 0px 4px 6px,
+    rgba(0, 0, 0, 0,08) 0px 1px 3px;
+    outline: none;
+    height: 45px;
+    width: 100px;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}

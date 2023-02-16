@@ -1,4 +1,12 @@
-<form class="desk-form" [formGroup]="form" (ngSubmit)="saveUserData()">
+
+<h3 align="center">{{title}}</h3>
+
+<form class="desk-form" [formGroup]="form" (ngSubmit)="saveDeskData()">
+
+  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please Enter ID">
+    <mat-label>Employee ID</mat-label>
+    <input matInput formControlName="employee_id" >
+</mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please select Building">
     <mat-label>Building</mat-label>
@@ -45,10 +53,11 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   
 
   <div class="example-button-row" style="margin:5px">
-    <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button> | <a (click)="closeUserPop()" mat-raised-button
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button> | <a (click)="closeDeskPop()" mat-raised-button
       color="accent">Close</a>
   </div>
 </form>

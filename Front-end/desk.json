@@ -1,4 +1,27 @@
 {
+  "users": [
+    {
+      "employee_id": "1",
+      "employee_name": "Thabiso ",
+      "position": "Junior Software Engineer",
+      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "id": 1
+    },
+    {
+      "employee_id": "2",
+      "employee_name": "Tiyani",
+      "position": "Administrator",
+      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "id": 2
+    },
+    {
+      "employee_id": "3",
+      "employee_name": "Sam",
+      "position": "Senior Software Engineer",
+      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "id": 3
+    }
+  ],
   "floors": [
     {
       "floor_id": 1,
@@ -7,14 +30,29 @@
       "offices": [
         {
           "office_name": "Admin Office",
+          "office_id": 101,
           "floor_id": 1,
           "capacity": 4,
           "desks": [
             {
               "desk_id": "Desk A",
-              "floor_id": 1,
+              "office_id": 101,
               "employee_id": 1,
               "occupied": true
+            },
+            {
+              "office_name": "Software Dpartment Office",
+              "office_id": 102,
+              "floor_id": 1,
+              "capacity": 4,
+              "desks": [
+                {
+                  "desk_id": "Desk B",
+                  "office_id": 102,
+                  "employee_id": 2,
+                  "occupied": false
+                }
+              ]
             }
           ]
         },
@@ -25,15 +63,15 @@
           "offices": [
             {
               "office_name": "Science Department Office",
+              "office_id": 103,
               "floor_id": 2,
               "capacity": 4,
               "desks": [
                 {
-                  "desk_id": "Desk B",
-                  "floor_id": 2,
+                  "desk_id": "Desk C",
                   "office_id": 103,
                   "employee_id": 2,
-                  "occupied": false
+                  "occupied": true
                 }
               ]
             }

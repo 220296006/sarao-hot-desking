@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,  LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,9 +11,12 @@ import { DeskComponent } from './features/desk/desk/desk.component';
 import { FloorComponent } from './features/floor/floor/floor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BarComponent } from './bar/bar.component';
-import { PieComponent } from './pie/pie.component';
-import { ScatterComponent } from './scatter/scatter.component';
+import { BarComponent } from './logRocket/bar/bar.component';
+import { PieComponent } from './logRocket/pie/pie.component';
+import { ScatterComponent } from './logRocket/pie/scatter/scatter.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { ScatterComponent } from './scatter/scatter.component';
     ScatterComponent
   ],
 
-  providers: [],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { ScatterComponent } from './scatter/scatter.component';
     AngularMaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
 export class AppModule { }
