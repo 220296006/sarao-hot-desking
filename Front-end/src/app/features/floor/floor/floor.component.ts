@@ -2,7 +2,6 @@ import { Component, Inject, forwardRef, ChangeDetectionStrategy, Input, OnInit }
 import { NonNullableFormBuilder, Validators, FormGroup, FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeskService } from 'src/app/shared/services/desk.service';
-import { userModel } from 'src/app/shared/models/userModel';
 
 export interface officeModel {
   floors: Floor[];
@@ -84,8 +83,8 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    if (this.floor.floor_id != '' && this.floor.floor_id != null) {
-      this.service.getByDeskId(this.floor.floor_id).subscribe(response => {
+    if (this.floor.employee_id != '' && this.floor.employee_id != null) {
+      this.service.getByDeskId(this.floor.employee_id).subscribe(response => {
         this.editDesk = response;
         this.form.setValue({
           employee_id: this.editDesk.employee_id, floor_id: this.editDesk.floor_id, building_name: this.editDesk.building_name, floor_name: this.editDesk.floor_name, office_name: this.editDesk.office_name, desk_id: this.editDesk.desk_id, 
@@ -144,14 +143,13 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
 
   saveDeskData() {
     if (this.form.value) {
-      const editId = this.form.getRawValue().floor_id;
- 
+      const editId = this.form.getRawValue().employee_id;
       if (editId != '' && editId != null) {
         this.service.updateByDeskId(editId, this.form.getRawValue()).subscribe(_response => {
           this.closeDeskPop();
         });
       } else {
-        this.service.saveDeskData(this.form.value).subscribe(response => {
+        this.service.saveDeskData(this.form.value).subscribe(_response => {
           this.closeDeskPop();
         }); 
       } 

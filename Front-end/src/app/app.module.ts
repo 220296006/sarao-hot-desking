@@ -1,4 +1,4 @@
-import { NgModule,  LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,9 @@ import { ScatterComponent } from './logRocket/pie/scatter/scatter.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { NavComponent } from './features/nav/nav/nav.component';
+import { DateTimePickerModule, MaskedDateTimeService } from '@syncfusion/ej2-angular-calendars';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,11 +29,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     FloorComponent,
     BarComponent,
     PieComponent,
-    ScatterComponent
+    ScatterComponent,
+    NavComponent
   ],
 
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}],
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, MaskedDateTimeService],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    DateTimePickerModule
   ],
 })
 export class AppModule { }

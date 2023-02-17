@@ -3,13 +3,13 @@ import { FormGroup, NonNullableFormBuilder, FormControl, Validators, ControlValu
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FloorComponent } from '../../floor/floor/floor.component';
 import { DeskService } from 'src/app/shared/services/desk.service';
-import {  Time } from '@angular/common';
+
 
 export interface userModel {
   users: User[];
 }
 export interface User {
-  id: number;
+  id: number; 
   employee_id: number;
   employee_name: string;
   bookingDate: Date;
@@ -38,10 +38,12 @@ export class UserComponent implements OnInit, ControlValueAccessor {
   onTouched: any = () => { };
   editId: any;
   editUser: any;
+  public dateValue: Date = new Date("01/02/2023 09:00")
+  public minDate: Date = new Date("01/01/2023 09:00")
+  public maxDate: Date = new Date("15/12/2023 18:00")
 
 
-
-  constructor(private builder: NonNullableFormBuilder, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public user: any, private service: DeskService, @Inject(LOCALE_ID) public locale: Time,) { }
+  constructor(private builder: NonNullableFormBuilder, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public user: any, private service: DeskService) { }
 
 
   writeValue(obj: any): void {
@@ -69,7 +71,7 @@ export class UserComponent implements OnInit, ControlValueAccessor {
       this.service.getByEmployeeId(this.user.employee_id).subscribe(response => {
         this.editUser = response;
         this.form.setValue({
-        id: this.editUser.this.id,  employee_id: this.editUser.employee_id, employee_name: this.editUser.employee_name, position: this.editUser.position, bookingDate: this.editUser.bookingDate
+         employee_id: this.editUser.employee_id, employee_name: this.editUser.employee_name, position: this.editUser.position, bookingDate: this.editUser.bookingDate
         })
       });
     }
@@ -97,7 +99,7 @@ export class UserComponent implements OnInit, ControlValueAccessor {
   }
 
   get bookingDate() {
-    return this.form.controls['booking_date']
+    return this.form.controls['bookingDate']
   }
 
   get position() {
@@ -110,13 +112,12 @@ export class UserComponent implements OnInit, ControlValueAccessor {
   saveUserData() {
     if (this.form.value) {
       const editId = this.form.getRawValue().employee_id;
-    
       if (editId != '' && editId != null) {
         this.service.updateByEmployeeId(editId, this.form.getRawValue()).subscribe(_response => {
           this.closeUserPop();
         });
       } else {
-        this.service.saveUserData(this.form.value).subscribe(response => {
+        this.service.saveUserData(this.form.value).subscribe(_response => {
           this.closeUserPop();
         });
       }

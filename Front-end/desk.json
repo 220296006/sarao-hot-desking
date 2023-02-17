@@ -4,21 +4,21 @@
       "employee_id": "1",
       "employee_name": "Thabiso ",
       "position": "Junior Software Engineer",
-      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "bookingDate": "2023-02-14",
       "id": 1
     },
     {
       "employee_id": "2",
       "employee_name": "Tiyani",
       "position": "Administrator",
-      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "bookingDate": "2023-02-14",
       "id": 2
     },
     {
       "employee_id": "3",
       "employee_name": "Sam",
       "position": "Senior Software Engineer",
-      "bookingDate": "2023-02-14T22:00:00.000Z",
+      "bookingDate": "2023-02-14",
       "id": 3
     }
   ],
@@ -27,32 +27,21 @@
       "floor_id": 1,
       "floor_name": "First Floor",
       "building_name": "SARAO Black River Park",
+      "id": 1,
       "offices": [
         {
           "office_name": "Admin Office",
           "office_id": 101,
           "floor_id": 1,
           "capacity": 4,
+          "id": 1,
           "desks": [
             {
               "desk_id": "Desk A",
               "office_id": 101,
               "employee_id": 1,
-              "occupied": true
-            },
-            {
-              "office_name": "Software Dpartment Office",
-              "office_id": 102,
-              "floor_id": 1,
-              "capacity": 4,
-              "desks": [
-                {
-                  "desk_id": "Desk B",
-                  "office_id": 102,
-                  "employee_id": 2,
-                  "occupied": false
-                }
-              ]
+              "occupied": true,
+              "id": 1
             }
           ]
         },
@@ -60,18 +49,21 @@
           "floor_id": 2,
           "floor_name": "Second Floor",
           "building_name": "SARAO Nothern Cape",
+          "id": 2,
           "offices": [
             {
               "office_name": "Science Department Office",
               "office_id": 103,
               "floor_id": 2,
               "capacity": 4,
+              "id": 2,
               "desks": [
                 {
-                  "desk_id": "Desk C",
+                  "desk_id": "Desk B",
                   "office_id": 103,
                   "employee_id": 2,
-                  "occupied": true
+                  "occupied": true,
+                  "id": 2
                 }
               ]
             }

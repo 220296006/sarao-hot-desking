@@ -1,6 +1,6 @@
 <h3 align="center">{{title}}</h3>
 
-<form class="form" [formGroup]="form" (ngSubmit)="saveUserData()">
+<form class="form" [formGroup]="form" (ngSubmit)="saveUserData()" >
 
     <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please Enter ID">
         <mat-label>Employee ID</mat-label>
@@ -21,13 +21,17 @@
         </mat-select>
       </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Choose Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="bookingDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> 
-    </mat-form-field>
+    <div class="example-full-width" appearance="fill" matTooltip="Please select Date and Time">
+        <ejs-datetimepicker 
+          formControlName="bookingDate"
+          placeholder="Choose a date and time"
+          [value]="dateValue"
+          [min]="minDate"
+          [max]="maxDate"
+          [enableMask]="true"
+          format="dd-MMM-yy hh:mm">
+        </ejs-datetimepicker>
+    </div>
 
     <div class="example-button-row" style="margin:5px">
         <button mat-raised-button color="primary" >Login</button> | <a (click)="closeUserPop()" mat-raised-button

@@ -28,31 +28,31 @@ export class DeskService {
     return this.http.get<userModel[]>(this.url2 + '/' + employee_id);
   }
 
-  getByDeskId(floor_id: any):Observable<officeModel[]>{
-    return this.http.get<officeModel[]>(this.url + '/' + floor_id);
+  getByDeskId(employee_id: any):Observable<officeModel[]>{
+    return this.http.get<officeModel[]>(this.url + '/' + employee_id);
   }
 
   removeByEmployeeId(employee_id: any) {
     return this.http.delete(this.url2 + '/' + employee_id);
   } 
 
-  removeByDeskId(floor_id: any) {
-    return this.http.delete(this.url + '/' + floor_id);
+  removeByDeskId(employee_id: any) {
+    return this.http.delete(this.url + '/' + employee_id);
   } 
 
   updateByEmployeeId(employee_id: any, user: any) {
     return this.http.put(this.url2 + '/' + employee_id, user);
   }
 
-  updateByDeskId(floor_id: any, floor: any) {
-    return this.http.put(this.url + '/' + floor_id, floor);
+  updateByDeskId(employee_id: any, floor: any) {
+    return this.http.put(this.url + '/' + employee_id, floor);
   }
 
-  saveUserData(employee_id: Partial<{ employee_id: number | null; employee_name: string | null; position: string |null; bookingDate: Date | null;}>) {
-    return this.http.post(this.url2, employee_id)
+  saveUserData(user: any) {
+    return this.http.post(this.url2, user)
   }
 
-  saveDeskData(floor_id: Partial<{ employee_id: number | null; floor_id: number | null; floor_name: string | null; building_name: string | null; office_name: string | null; capacity: number | null; desk_id: number | null;}>) {
-    return this.http.post(this.url, floor_id)
+  saveDeskData(desk: any) {
+    return this.http.post(this.url, desk)
   }
 }

@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
 
   userLogin(id: any) {
     const _create = this.dialog.open(UserComponent, {
-      width: '300px',
+      width: '400px',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {
@@ -115,8 +115,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  editUser(employee_id: any) {
-    this.userLogin(employee_id)
+  editUser(employee_id: any, user: any) {
+    this.service.updateByEmployeeId(employee_id, user).subscribe(response => {
+      this.loadUser();
+    })
   }
 
   deleteUser(employee_id: any) {
@@ -125,12 +127,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  editDesk(floor_id: any) {
-    this.bookDesk(floor_id)
+  editDesk(employee_id: any, desk: any) {
+    this.service.updateByDeskId(employee_id, desk).subscribe( _response =>{
+    this.loadDesk();
+    })
   }
 
-  deleteDesk(floor_id: any) {
-    this.service.removeByDeskId(floor_id) .subscribe(_response => {
+  deleteDesk(employee_id: any) {
+    this.service.removeByDeskId(employee_id) .subscribe(_response => {
       this.loadDesk();
     })
   }
