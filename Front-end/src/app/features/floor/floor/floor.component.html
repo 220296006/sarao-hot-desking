@@ -1,15 +1,21 @@
-
 <h3 align="center">{{title}}</h3>
 
-<form class="desk-form" [formGroup]="form" (ngSubmit)="saveDeskData()">
+<form id="desk-form" [formGroup]="form" (ngSubmit)="saveDeskData()">
 
-  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please Enter ID">
-    <mat-label>Employee ID</mat-label>
-    <input matInput formControlName="employee_id" >
-</mat-form-field>
+  <mat-form-field class="form-full-width" appearance="fill" [hidden]="true"> 
+    <input matInput formControlName="id">
+  </mat-form-field>
 
-  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please select Building">
-    <mat-label>Building</mat-label>
+  <mat-form-field class="form-full-width" appearance="fill" matTooltip="Please Enter ID">
+    <div> <fa-icon [icon]="faUser"></fa-icon></div>
+    <div><mat-label>Employee ID</mat-label></div>
+    <input matInput formControlName="employee_id">
+  </mat-form-field>
+
+
+  <mat-form-field class="form-full-width" appearance="fill" matTooltip="Please select Building">
+    <div><fa-icon [icon]="faBuilding"></fa-icon></div>
+    <div> <mat-label>Building</mat-label></div>
     <mat-select type="building_name" placeholder="Building" formControlName="building_name">
       <mat-option *ngFor="let buildingOption of buildingOptions" [value]="buildingOption">
         {{buildingOption}}
@@ -17,27 +23,19 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width" appearance="fill"  matTooltip="Please select Floor ID">
-    <mat-label> Floor Id</mat-label>
-    <mat-select type="floor_id" placeholder="Floor Id" formControlName="floor_id">
-      <mat-option *ngFor="let floorIdOption of floorIdOptions" [value]="floorIdOption" [disabled]="building_name.invalid">
-        {{floorIdOption}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please select Floor">
-    <mat-label>Floor</mat-label>
+  <mat-form-field class="form-full-width" appearance="fill" matTooltip="Please select Floor">
+    <div><fa-icon [icon]="faBuilding"></fa-icon></div>
+    <div><mat-label>Floor</mat-label></div>
     <mat-select type="floor_name" placeholder="Floor" formControlName="floor_name">
-      <mat-option *ngFor="let floorOption of floorOptions" [value]="floorOption" [disabled]="floor_id.invalid">
+      <mat-option *ngFor="let floorOption of floorOptions" [value]="floorOption">
         {{floorOption}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-
-  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please select Office">
-    <mat-label>Office</mat-label>
+  <mat-form-field class="form-full-width" appearance="fill" matTooltip="Please select Office">
+    <div><fa-icon [icon]="faMapMarker"></fa-icon></div>
+    <div><mat-label>Office</mat-label></div>
     <mat-select type="office_name" placeholder="Office" formControlName="office_name">
       <mat-option *ngFor="let officeOption of officeOptions" [value]="officeOption" [disabled]="floor_name.invalid">
         {{officeOption}}
@@ -45,8 +43,9 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width" appearance="fill" matTooltip="Please select Desk">
-    <mat-label>Desk</mat-label>
+  <mat-form-field class="form-full-width" appearance="fill" matTooltip="Please select Desk">
+    <div><fa-icon [icon]="faDesktop"></fa-icon> </div>
+    <div> <mat-label>Desk</mat-label></div>
     <mat-select type="desk_id" placeholder="Desk" formControlName="desk_id">
       <mat-option *ngFor="let deskOption of deskOptions" [value]="deskOption" [disabled]="office_name.invalid">
         {{deskOption}}
@@ -54,10 +53,14 @@
     </mat-select>
   </mat-form-field>
 
-  
+  <div type="ejs-datetimepicker" class="form-full-width" appearance="fill" matTooltip="Please select Date and Time">
+    <ejs-datetimepicker formControlName="bookingDate"  placeholder="Choose a date and time" [format]="dateTimePickerModule">
+    </ejs-datetimepicker>
+  </div>
 
-  <div class="example-button-row" style="margin:5px">
-    <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button> | <a (click)="closeDeskPop()" mat-raised-button
-      color="accent">Close</a>
+  <div id="form-button-row">
+    <button mat-raised-button color="primary" class="form-action-button" (click)="saveDeskData()">Save</button>
+    <button mat-raised-button color="accent" class="form-action-button" [disabled]="false"
+      (click)="closeDeskPop()">Close</button>
   </div>
 </form>

@@ -1,8 +1,19 @@
-import { Office } from "src/app/features/floor/floor/floor.component"
+import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 
-export interface Floor {
-    floor_id: number
-    floor_name: string
-    building_name: string
-    offices: Office[]
+export interface FloorModel {
+   
+    id: number;
+    floor_name: string;
+    building_name: string;
+    bookingDate: DateTimePickerModule,
+    employee_id: string;
+    offices: {
+      office_name: string;
+      capacity: number;
+      desks: {
+        desk_id: string;
+        occupied: boolean;
+      }
+    }
   }
+

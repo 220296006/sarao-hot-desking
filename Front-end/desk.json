@@ -1,75 +1,68 @@
 {
   "users": [
     {
-      "employee_id": "1",
-      "employee_name": "Thabiso ",
+      "employeeId": "1",
+      "firstName": "Thabiso",
+      "lastName": "Matsaba",
+      "email": "thabisomatsaba96@gmail.com",
+      "phoneNumber": "0730493949",
       "position": "Junior Software Engineer",
-      "bookingDate": "2023-02-14",
+      "password": "Cput#1234",
+      "passwordConfirmation": "Cput#1234",
       "id": 1
     },
     {
-      "employee_id": "2",
-      "employee_name": "Tiyani",
-      "position": "Administrator",
-      "bookingDate": "2023-02-14",
+      "employeeId": 2,
+      "firstName": "James",
+      "lastName": "Lebron",
+      "email": "lebronjames@gmail.com",
+      "phoneNumber": "0732837773",
+      "position": "Scrum Master",
+      "password": "898989",
+      "passwordConfirmation": "8989898",
       "id": 2
     },
     {
-      "employee_id": "3",
-      "employee_name": "Sam",
-      "position": "Senior Software Engineer",
-      "bookingDate": "2023-02-14",
+      "employeeId": 2,
+      "firstName": "Tiyani",
+      "lastName": "Baloyi",
+      "email": "tbaloyi@sarao.ac.za",
+      "phoneNumber": "0795674753",
+      "position": "Junior Software Engineer",
+      "password": "12345",
+      "passwordConfirmation": "12345",
       "id": 3
     }
   ],
   "floors": [
     {
-      "floor_id": 1,
-      "floor_name": "First Floor",
+      "employee_id": "EMP2023-0",
       "building_name": "SARAO Black River Park",
-      "id": 1,
-      "offices": [
-        {
-          "office_name": "Admin Office",
-          "office_id": 101,
-          "floor_id": 1,
-          "capacity": 4,
-          "id": 1,
-          "desks": [
-            {
-              "desk_id": "Desk A",
-              "office_id": 101,
-              "employee_id": 1,
-              "occupied": true,
-              "id": 1
-            }
-          ]
-        },
-        {
-          "floor_id": 2,
-          "floor_name": "Second Floor",
-          "building_name": "SARAO Nothern Cape",
-          "id": 2,
-          "offices": [
-            {
-              "office_name": "Science Department Office",
-              "office_id": 103,
-              "floor_id": 2,
-              "capacity": 4,
-              "id": 2,
-              "desks": [
-                {
-                  "desk_id": "Desk B",
-                  "office_id": 103,
-                  "employee_id": 2,
-                  "occupied": true,
-                  "id": 2
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "floor_name": "First Floor",
+      "office_name": "Software Department Office",
+      "desk_id": "Desk B",
+      "bookingDate": "20-02-2023 08:00",
+      "capacity": 4,
+      "occupied": true,
+      "id": 1
+    },
+    {
+      "employee_id": "EMP2023-1",
+      "building_name": "SARAO Nothern Cape",
+      "floor_name": "Second Floor",
+      "office_name": "Software Department Office",
+      "desk_id": "Desk C",
+      "bookingDate": "2023-02-24T09:00:00.000Z",
+      "id": 2
+    },
+    {
+      "employee_id": "EMP2023-1",
+      "building_name": "SARAO Nothern Cape",
+      "floor_name": "Second Floor",
+      "office_name": "Software Department Office",
+      "desk_id": "Desk C",
+      "bookingDate": "2023-02-24T09:00:00.000Z",
+      "id": 3
     }
   ]
 }

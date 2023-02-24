@@ -6,11 +6,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './features/home/home.component';
 import { AngularMaterialModule } from './features/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './features/user/user/user.component';
-import { DeskComponent } from './features/desk/desk/desk.component';
 import { FloorComponent } from './features/floor/floor/floor.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BarComponent } from './logRocket/bar/bar.component';
 import { PieComponent } from './logRocket/pie/pie.component';
 import { ScatterComponent } from './logRocket/pie/scatter/scatter.component';
@@ -18,23 +16,30 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NavComponent } from './features/nav/nav/nav.component';
-import { DateTimePickerModule, MaskedDateTimeService } from '@syncfusion/ej2-angular-calendars';
- 
+import { DateTimePickerModule} from '@syncfusion/ej2-angular-calendars';
+import {MatIconModule} from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { LoginComponent } from './features/login/login/login.component';
+import { LogoutComponent } from './features/logout/logout/logout.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UserComponent,
-    DeskComponent,
     FloorComponent,
     BarComponent,
     PieComponent,
     ScatterComponent,
-    NavComponent
+    NavComponent, 
+    LoginComponent, 
+    LogoutComponent,
   ],
 
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, MaskedDateTimeService],
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+  ],
+
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -45,7 +50,10 @@ import { DateTimePickerModule, MaskedDateTimeService } from '@syncfusion/ej2-ang
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    DateTimePickerModule
+    DateTimePickerModule,
+    MatIconModule,
+    FontAwesomeModule,
+    FormsModule
   ],
 })
 export class AppModule { }

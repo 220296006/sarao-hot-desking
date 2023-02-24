@@ -1,7 +1,12 @@
+
 export interface userModel {
-    employee_id: number;
-    employee_name: string;
-    bookingDate: Date;
+    id: number;
+    employeeId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
     position: string;
-  
+    password: string;
+    passwordConfirmation: string;
   }

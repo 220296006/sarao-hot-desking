@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { userModel } from '../models/userModel';
-import {officeModel} from "C:/Users/thabi/Desktop/Python/sarao-hot-desking/Front-end/src/app/shared/models/officeModel";
-
+import {FloorModel} from '../models/floorModel';
 
 @Injectable({
   providedIn: 'root'
@@ -20,39 +19,41 @@ export class DeskService {
     return this.http.get<userModel[]>(this.url2);
   }
 
-  getAllDesks(): Observable<officeModel[]>{
-    return this.http.get<officeModel[]>(this.url);
+  getAllDesks(): Observable<FloorModel[]>{
+    return this.http.get<FloorModel[]>(this.url);
   }
 
-  getByEmployeeId(employee_id: any):Observable<userModel[]>{
-    return this.http.get<userModel[]>(this.url2 + '/' + employee_id);
+  getByEmployeeId(id: any):Observable<userModel[]>{
+    return this.http.get<userModel[]>(this.url2 + '/' + id);
   }
 
-  getByDeskId(employee_id: any):Observable<officeModel[]>{
-    return this.http.get<officeModel[]>(this.url + '/' + employee_id);
+  getByDeskId(id: any):Observable<FloorModel[]>{
+    return this.http.get<FloorModel[]>(this.url + '/' + id);
   }
 
-  removeByEmployeeId(employee_id: any) {
-    return this.http.delete(this.url2 + '/' + employee_id);
+  removeByEmployeeId(id: any) {
+    return this.http.delete(this.url2 + '/' + id);
   } 
 
-  removeByDeskId(employee_id: any) {
-    return this.http.delete(this.url + '/' + employee_id);
+  removeByDeskId(id: FloorModel) {
+    return this.http.delete(this.url + '/' + id);
   } 
 
-  updateByEmployeeId(employee_id: any, user: any) {
-    return this.http.put(this.url2 + '/' + employee_id, user);
+  updateByEmployeeId(id: FloorModel, user: userModel) {
+    return this.http.put(this.url2 + '/' + id, user);
   }
 
-  updateByDeskId(employee_id: any, floor: any) {
-    return this.http.put(this.url + '/' + employee_id, floor);
+  updateByDeskId(id: FloorModel, employee_id: FloorModel) {
+    return this.http.put(this.url + '/' + id, employee_id);
   }
 
   saveUserData(user: any) {
+    console.log(user);
     return this.http.post(this.url2, user)
   }
 
-  saveDeskData(desk: any) {
-    return this.http.post(this.url, desk)
+  saveDeskData(floor: FloorModel) {
+    console.log(floor)
+    return this.http.post(this.url, floor)
   }
 }
