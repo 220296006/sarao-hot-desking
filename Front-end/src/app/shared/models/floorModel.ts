@@ -5,7 +5,7 @@ export interface FloorModel {
     id: number;
     floor_name: string;
     building_name: string;
-    bookingDate: DateTimePickerModule,
+    bookingDate: string,
     employee_id: string;
     offices: {
       office_name: string;

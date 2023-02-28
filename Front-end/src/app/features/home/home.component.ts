@@ -5,8 +5,8 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from '@angular/material/table';
 import { DeskService } from 'src/app/shared/services/desk.service';
 import { MatTable } from '@angular/material/table';
-import { FloorComponent } from '../floor/floor/floor.component';
 import { FloorModel } from 'src/app/shared/models/floorModel';
+import { FloorComponent } from '../floor/floor/floor.component';
 
 
 const tableDataSource: FloorModel[] = [
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   @Input() floors: FloorModel[] = [];
 
 
-  constructor(private service: DeskService, private dialog: MatDialog) { }
+  constructor(private service: DeskService, private dialog: MatDialog) {  this.loadDesk();}
 
   @ViewChild(MatTable) table?: MatTable<FloorModel>
   @ViewChild(MatPaginator) _paginator!: MatPaginator;
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    const _create = this.dialog.open( FloorComponent, {
+    const _create = this.dialog.open(FloorComponent, {
       width: '400px',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
@@ -76,14 +76,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  editDesk(id: FloorModel, employee_id: FloorModel) {
-    this.service.updateByDeskId(employee_id, id).subscribe(response => {
-      this.bookDesk(id);
-      console.log('update', response );
-  })
-}
-
-  deleteDesk(id: FloorModel) {
+  updateDesk(id: any){
+      this.bookDesk(id)
+ 
+  }
+  deleteDesk(id: any) {
     this.service.removeByDeskId(id).subscribe(response => {
       this.loadDesk();
     })

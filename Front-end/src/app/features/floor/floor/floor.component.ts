@@ -71,7 +71,7 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
       this.service.getByDeskId(this.floor.id).subscribe(response => {
         this.editDesk = response;
         this.form.setValue({
-          id: this.editDesk.id, employee_id: this.editDesk.employee_id,
+          id: this.editDesk.id, employee_id: this.editDesk.employee_id || null,
           building_name: this.editDesk.building_name, floor_name: this.editDesk.floor_name,
           office_name: this.editDesk.office_name, desk_id: this.editDesk.desk_id,
           bookingDate: this.editDesk.bookingDate,
@@ -117,9 +117,9 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
     return this.form.controls['id']
   }
 
-  @Input() floorOptions: Array<string> = ['First Floor', 'Second Floor'];
+  @Input() floorOptions: Array<String> = ['First Floor', 'Second Floor'];
 
-  @Input() officeOptions: Array<string> = ['Admin Office', 'Software Department Office', "Science Department Office"]
+  @Input() officeOptions: Array<String> = ['Admin Office', 'Software Department Office', "Science Department Office"]
 
   @Input() deskOptions: Array<String> = ['Desk A', 'Desk B', 'Desk C'];
 
@@ -139,8 +139,8 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
-    // console.log('Form Valid:', this.form.valid);
-    // console.log('Form Values:', this.form.value);
+    console.log('Form Valid:', this.form.valid);
+    console.log('Form Values:', this.form.value);
   }
   closeDeskPop() {
     this.dialog.closeAll();

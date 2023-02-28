@@ -35,16 +35,16 @@ export class DeskService {
     return this.http.delete(this.url2 + '/' + id);
   } 
 
-  removeByDeskId(id: FloorModel) {
+  removeByDeskId(id: any) {
     return this.http.delete(this.url + '/' + id);
   } 
 
-  updateByEmployeeId(id: FloorModel, user: userModel) {
+  updateByEmployeeId(id: any, user: any) {
     return this.http.put(this.url2 + '/' + id, user);
   }
 
-  updateByDeskId(id: FloorModel, employee_id: FloorModel) {
-    return this.http.put(this.url + '/' + id, employee_id);
+  updateByDeskId(id: any, floor: any) {
+    return this.http.put(this.url + '/' + id, floor);
   }
 
   saveUserData(user: any) {
@@ -52,7 +52,7 @@ export class DeskService {
     return this.http.post(this.url2, user)
   }
 
-  saveDeskData(floor: FloorModel) {
+  saveDeskData(floor: any) {
     console.log(floor)
     return this.http.post(this.url, floor)
   }

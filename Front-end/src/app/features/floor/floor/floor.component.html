@@ -1,6 +1,6 @@
 <h3 align="center">{{title}}</h3>
 
-<form id="desk-form" [formGroup]="form" (ngSubmit)="saveDeskData()">
+<form id="desk-form" [formGroup]="form">
 
   <mat-form-field class="form-full-width" appearance="fill" [hidden]="true"> 
     <input matInput formControlName="id">
@@ -54,7 +54,7 @@
   </mat-form-field>
 
   <div type="ejs-datetimepicker" class="form-full-width" appearance="fill" matTooltip="Please select Date and Time">
-    <ejs-datetimepicker formControlName="bookingDate"  placeholder="Choose a date and time" [format]="dateTimePickerModule">
+    <ejs-datetimepicker formControlName="bookingDate"  placeholder="Choose a Date and Time" [format]="dateTimePickerModule">
     </ejs-datetimepicker>
   </div>
 
