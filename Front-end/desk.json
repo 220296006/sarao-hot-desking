@@ -12,28 +12,6 @@
       "id": 1
     },
     {
-      "employeeId": 2,
-      "firstName": "James",
-      "lastName": "Lebron",
-      "email": "lebronjames@gmail.com",
-      "phoneNumber": "0732837773",
-      "position": "Scrum Master",
-      "password": "898989",
-      "passwordConfirmation": "8989898",
-      "id": 2
-    },
-    {
-      "employeeId": 2,
-      "firstName": "Tiyani",
-      "lastName": "Baloyi",
-      "email": "tbaloyi@sarao.ac.za",
-      "phoneNumber": "0795674753",
-      "position": "Junior Software Engineer",
-      "password": "12345",
-      "passwordConfirmation": "12345",
-      "id": 3
-    },
-    {
       "employeeId": "4",
       "firstName": "Tiyani",
       "lastName": "Baloyi",
@@ -42,38 +20,53 @@
       "position": "Junior Software Engineer",
       "password": "12345",
       "passwordConfirmation": "12345",
-      "id": 4
+      "id": 2
     },
     {
-      "employeeId": "2",
-      "firstName": "Shaun",
-      "lastName": "Brown",
-      "email": "220296006@mycput.ac.za",
-      "phoneNumber": "0730493949",
+      "employeeId": "EMP2023-1",
+      "firstName": "Thabiso",
+      "lastName": "Matsaba",
+      "email": "thabisomatsaba96@gmail.com",
+      "phoneNumber": "thabisomatsaba96@gmail.com",
+      "position": "Junior Software Engineer",
+      "password": "xdvsgsgs",
+      "passwordConfirmation": "xdvsgsgs",
+      "id": 3
+    },
+    {
+      "employeeId": "EMP2023-1",
+      "firstName": "Thabiso",
+      "lastName": "Matsaba",
+      "email": "thabisomatsaba96@gmail.com",
+      "phoneNumber": "thabisomatsaba96@gmail.com",
       "position": "Scrum Master",
-      "password": "12345",
-      "passwordConfirmation": "12345",
-      "id": 5
+      "password": "xdvsgsgs",
+      "passwordConfirmation": "xdvsgsgs",
+      "id": 4
     }
   ],
   "floors": [
     {
-      "id": 1,
-      "employee_id": "EMP2023-0",
+      "employeeId": "EMP2023-1",
+      "firstName": "Thabiso",
+      "lastName": "Matsaba",
       "building_name": "SARAO Black River Park",
       "floor_name": "First Floor",
-      "office_name": "Science Department Office",
+      "office_name": "Admin Office",
       "desk_id": "Desk A",
-      "bookingDate": "2023-02-27T22:00:00.000Z"
+      "bookingDate": "2023-02-27T22:00:00.000Z",
+      "id": 1
     },
     {
-      "id": 2,
-      "employee_id": "EMP2023-1",
+      "employeeId": "EMP2023-2",
+      "firstName": "Tinayi",
+      "lastName": "Baloyi",
       "building_name": "SARAO Nothern Cape",
       "floor_name": "Second Floor",
       "office_name": "Software Department Office",
       "desk_id": "Desk B",
-      "bookingDate": "2023-02-24T09:00:00.000Z"
+      "bookingDate": "2023-02-28T08:00:00.000Z",
+      "id": 1
     }
   ]
 }

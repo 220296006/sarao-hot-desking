@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { LoginComponent } from './features/login/login/login.component';
 import { LogoutComponent } from './features/logout/logout/logout.component';
+import { AuthService } from './shared/services/auth.service';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { LogoutComponent } from './features/logout/logout/logout.component';
   ],
 
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+    AuthService
   ],
 
   bootstrap: [AppComponent],

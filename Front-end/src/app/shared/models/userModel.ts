@@ -5,7 +5,7 @@ export interface userModel {
     firstName: string;
     lastName: string;
     email: string;
-    phoneNumber: number;
+    phoneNumber: string;
     position: string;
     password: string;
     passwordConfirmation: string;

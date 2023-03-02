@@ -10,9 +10,19 @@
     <td mat-cell *matCellDef="let element">{{element.id}}</td>
   </ng-container>
   
-  <ng-container matColumnDef="employee_id">
+  <ng-container matColumnDef="employeeId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </th>
-    <td mat-cell *matCellDef="let row"> {{row.employee_id }}</td>
+    <td mat-cell *matCellDef="let row"> {{row.employeeId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+    <td mat-cell *matCellDef="let row"> {{row.firstName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+    <td mat-cell *matCellDef="let row"> {{row.lastName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="floor_name">
@@ -34,14 +44,14 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="capacity">
+  <!-- <ng-container matColumnDef="capacity">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity</th>
-    <td mat-cell *matCellDef="let row">
+    <td mat-cell *matCellDef="let row"> -->
       <!-- <ng-container *ngFor="let office of row.offices"> -->
-        {{ row.capacity  }}
+        <!-- {{ row.capacity  }} -->
       <!-- </ng-container> -->
-    </td>
-  </ng-container>
+    <!-- </td>
+  </ng-container> -->
 
   <ng-container matColumnDef="desk_id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Desk Id</th>
@@ -59,16 +69,16 @@
     <td mat-cell *matCellDef="let row">{{ row.bookingDate }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="occupied">
+  <!-- <ng-container matColumnDef="occupied">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Occupied</th>
-    <td mat-cell *matCellDef="let row">
+    <td mat-cell *matCellDef="let row"> -->
       <!-- <ng-container *ngFor="let office of row.offices">
         <ng-container *ngFor="let desk of office.desks"> -->
-          {{ row.occupied }}
+          <!-- {{ row.occupied }} -->
         <!-- </ng-container>
       </ng-container> -->
-    </td>
-  </ng-container>
+    <!-- </td>
+  </ng-container> -->
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef  mat-sort-header> Action </th>

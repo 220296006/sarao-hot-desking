@@ -9,23 +9,7 @@ import { FloorModel } from 'src/app/shared/models/floorModel';
 import { FloorComponent } from '../floor/floor/floor.component';
 
 
-const tableDataSource: FloorModel[] = [
-  {
-    "id": 1,
-    "employee_id": "EMP2023-1",
-    "building_name": "SARAO Black River Park",
-    "floor_name": "First Floor",
-    "bookingDate": '20-0o2-2023, 08:0o0',
-    "offices": {
-      "office_name": "Software Department Office",
-      "capacity": 4,
-      "desks": {
-        "desk_id": "Desk A",
-        "occupied": true
-      }
-    }
-  }
-]
+const tableDataSource: FloorModel[] = []
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -34,7 +18,7 @@ const tableDataSource: FloorModel[] = [
 export class HomeComponent implements OnInit {
   title = 'SARAO Hotdesking';
   tableDataSource: any;
-  displayedColumns: string[] = ["employee_id", "floor_name", "building_name", "office_name", "desk_id", "bookingDate", "capacity", "occupied", "action"]
+  displayedColumns: string[] = ["employeeId", "firstName", "lastName", "floor_name", "building_name", "office_name", "desk_id", "bookingDate", "action"]
   dataSource = [...tableDataSource]
   @Input() floors: FloorModel[] = [];
 
@@ -78,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   updateDesk(id: any){
       this.bookDesk(id)
- 
+  
   }
   deleteDesk(id: any) {
     this.service.removeByDeskId(id).subscribe(response => {
