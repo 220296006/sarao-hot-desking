@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DeskService } from 'src/app/shared/services/desk.service';
 import { MatTable } from '@angular/material/table';
 import { FloorModel } from 'src/app/shared/models/floorModel';
-import { FloorComponent } from '../floor/floor/floor.component';
+import { FloorComponent } from '../floor/floor.component';
 
 
 const tableDataSource: FloorModel[] = []

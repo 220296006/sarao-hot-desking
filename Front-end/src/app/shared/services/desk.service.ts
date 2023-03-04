@@ -11,16 +11,16 @@ export class DeskService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:3000/floors";
+  url = "http://127.0.0.1:8000/api/floors";
 
-  url2 =  "http://localhost:3000/users";
+  url2 = "http://127.0.0.1:8000/api/users";
 
   getAllUsers(): Observable<userModel[]>{
-    return this.http.get<userModel[]>(this.url2);
+    return this.http.get<userModel[]>(this.url);
   }
 
   getAllDesks(): Observable<FloorModel[]>{
-    return this.http.get<FloorModel[]>(this.url);
+    return this.http.get<FloorModel[]>('/api/floors');
   }
 
   getByEmployeeId(id: any):Observable<userModel[]>{
@@ -28,11 +28,11 @@ export class DeskService {
   }
 
   getByDeskId(id: any):Observable<FloorModel[]>{
-    return this.http.get<FloorModel[]>(this.url + '/' + id);
+    return this.http.get<FloorModel[]>('/api/floors' + '/' + id);
   }
 
   removeByEmployeeId(id: any) {
-    return this.http.delete(this.url2 + '/' + id);
+    return this.http.delete(this.url2+ '/' + id);
   } 
 
   removeByDeskId(id: any) {

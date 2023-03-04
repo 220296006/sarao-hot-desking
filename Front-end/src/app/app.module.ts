@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './features/home/home.component';
 import { AngularMaterialModule } from './features/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FloorComponent } from './features/floor/floor/floor.component';
+import { FloorComponent } from './features/floor/floor.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BarComponent } from './logRocket/bar/bar.component';
@@ -15,12 +15,12 @@ import { ScatterComponent } from './logRocket/pie/scatter/scatter.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
-import { NavComponent } from './features/nav/nav/nav.component';
+import { NavComponent } from './features/nav/nav.component';
 import { DateTimePickerModule} from '@syncfusion/ej2-angular-calendars';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { LoginComponent } from './features/login/login/login.component';
-import { LogoutComponent } from './features/logout/logout/logout.component';
+import { LoginComponent } from './features/login/login.component';
+import { LogoutComponent } from './features/logout/logout.component';
 import { AuthService } from './shared/services/auth.service';
 
 
