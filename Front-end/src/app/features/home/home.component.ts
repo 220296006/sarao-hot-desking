@@ -18,7 +18,7 @@ const tableDataSource: FloorModel[] = []
 export class HomeComponent implements OnInit {
   title = 'SARAO Hotdesking';
   tableDataSource: any;
-  displayedColumns: string[] = ["employeeId", "firstName", "lastName", "floor_name", "building_name", "office_name", "desk_id", "bookingDate", "action"]
+  displayedColumns: string[] = ["employeeId", "firstName", "position", "floor_name", "building_name", "office_name", "desk_id", "bookingDate", "action"]
   dataSource = [...tableDataSource]
   @Input() floors: FloorModel[] = [];
 
@@ -61,8 +61,9 @@ export class HomeComponent implements OnInit {
   }
 
   updateDesk(id: any){
+      //this.service.updateByDeskId(id).subscribe(response => {
       this.bookDesk(id)
-  
+     //})
   }
   deleteDesk(id: any) {
     this.service.removeByDeskId(id).subscribe(response => {

@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, forwardRef, Inject, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { faUser, faEnvelope, faPhone, faUserTie, faLock } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import { DeskService } from 'src/app/shared/services/desk.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 export interface userModel {
   users: User[];
@@ -50,11 +49,10 @@ export class LoginComponent implements OnInit, ControlValueAccessor {
   faUserTie = faUserTie;
   faLock = faLock;
   sarao: string = "C:/Users/thabi/Desktop/Python/sarao-hot-desking/Front-end/src/assets/sarao.png";
-  public form!: FormGroup;
 
   constructor(private builder: FormBuilder, private service: DeskService,
     private authService: AuthService,
-    private router: Router, private toastr: ToastrService) { }
+    private router: Router) { }
 
   user: any = {};
   writeValue(input: any): void {
@@ -91,36 +89,33 @@ export class LoginComponent implements OnInit, ControlValueAccessor {
   };
 
   ngOnInit(): void {
-    this.initForm();
     if (this.user.id != '' && this.user.id != null) {
       this.service.getByEmployeeId(this.user.id).subscribe(response => {
         this.editUser = response;
         this.form.setValue({
           id: this.editUser.id, employeeId: this.editUser.employeeId,
           firstName: this.editUser.firstName,
-          lastName: this.editUser.lastName, 
-          email: this.editUser.email,
+          lastName: this.editUser.lastName, email: this.editUser.email,
           phoneNumber: this.editUser.phoneNumber,
           position: this.editUser.position, password: this.editUser.password,
-          passwordConfirmation: this.editUser.passwordConfirmation,
+          passwordConfirmation: this.editUser.passwordConfirmation
         });
       });
     }
   }
 
-private initForm(): void {
-  this.form = new FormGroup({
+  form: FormGroup = this.builder.group({
     id: new FormControl({ value: '', disabled: true }),
     employeeId: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    email: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
     position: new FormControl('', Validators.required),
-    password: new FormControl('',Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])),
-    passwordConfirmation: new FormControl('', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
+    password: new FormControl('', Validators.required),
+    passwordConfirmation: new FormControl('', Validators.required)
   });
-}
+
 
   get employeeId() {
     return this.form.controls['employeeId']
@@ -163,15 +158,11 @@ private initForm(): void {
       const editId = this.form.getRawValue().id;
       if (editId != '' && editId != null) {
         this.service.updateByEmployeeId(editId, this.form.getRawValue()).subscribe(response => {
-          this.toastr.success('Registered successfully')
-          this.router.navigate(['/home'])
         });
       } else {
         this.service.saveUserData(this.form.value).subscribe(response => {
         });
       }
-      console.log('Form Valid:', this.form.valid);
-      console.log('Form Values:', this.form.value);
     }
     const token = this.authService.authUser(this.form.value);
     if (token) {

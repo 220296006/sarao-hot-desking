@@ -11,49 +11,61 @@ export class DeskService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://127.0.0.1:8000/api/floors";
+  url_Floors = "http://127.0.0.1:8000/api/floors";
 
-  url2 = "http://127.0.0.1:8000/api/users";
+  url_Users = "http://127.0.0.1:8000/api/users";
 
   getAllUsers(): Observable<userModel[]>{
-    return this.http.get<userModel[]>(this.url);
+    return this.http.get<userModel[]>(this.url_Users);
   }
 
   getAllDesks(): Observable<FloorModel[]>{
-    return this.http.get<FloorModel[]>('/api/floors');
+    return this.http.get<FloorModel[]>(this.url_Floors);
   }
 
-  getByEmployeeId(id: any):Observable<userModel[]>{
-    return this.http.get<userModel[]>(this.url2 + '/' + id);
+  getByEmployeeId(id: any): Observable<userModel[]>{
+    return this.http.get<userModel[]>(`${this.url_Users}/${id}`);
   }
 
-  getByDeskId(id: any):Observable<FloorModel[]>{
-    return this.http.get<FloorModel[]>('/api/floors' + '/' + id);
+  getByDeskId(id: any): Observable<FloorModel[]>{
+    return this.http.get<FloorModel[]>(`${this.url_Floors}/${id}`);
   }
 
   removeByEmployeeId(id: any) {
-    return this.http.delete(this.url2+ '/' + id);
+    return this.http.delete(`${this.url_Users}/${id}`);
   } 
 
   removeByDeskId(id: any) {
-    return this.http.delete(this.url + '/' + id);
+    return this.http.delete(`${this.url_Floors}/${id}`);
   } 
 
-  updateByEmployeeId(id: any, user: any) {
-    return this.http.put(this.url2 + '/' + id, user);
+  updateByEmployeeId(id: any, data: any) {
+    return this.http.put(`${this.url_Users}/${id}`, data);
   }
 
-  updateByDeskId(id: any, floor: any) {
-    return this.http.put(this.url + '/' + id, floor);
+  updateByDeskId(id: any, data: any){
+    return this.http.put(`${this.url_Floors}/${id}`, data);
   }
 
   saveUserData(user: any) {
     console.log(user);
-    return this.http.post(this.url2, user)
+    return this.http.post(this.url_Users, user);
   }
 
   saveDeskData(floor: any) {
     console.log(floor)
-    return this.http.post(this.url, floor)
+    return this.http.post(this.url_Floors, floor);
+  }
+
+  isloggedin(){
+    return sessionStorage.getItem('firstName')!=null;
+  }
+
+  getrole(){
+    return sessionStorage.getItem('role')!=null?sessionStorage.getItem('role')?.toString():'';
+  }
+  
+  Getaccessbyrole(role:any,menu:any){
+    return this.http.get(`http://127.0.0.1:8000/roleaccess?role=${role}&menu=${menu}`);
   }
 }

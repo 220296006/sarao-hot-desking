@@ -53,6 +53,9 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
       this.floors = obj.floors;
       this.form.patchValue({
         id: obj.id,
+        employeeId: obj.employeeId,
+        firstName: obj.firstName,
+        lastName: obj.lastName,
         building_name: obj.building_name,
         office_name: obj.office_name,
         floor_name: obj.floor_name,
@@ -76,10 +79,11 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
     this.initForm();
     console.log(this.form.controls)
     if (this.floor.id !='' && this.floor.id != null) {
-      this.service.updateByDeskId(this.floor.id, this.floor.data).subscribe(response => {
+      this.service.getByDeskId(this.floor.id).subscribe(response => {
         this.editDesk = response;
         this.form.setValue({
-          id: this.editDesk.id,
+          id: this.editDesk.id, employeeId: this.editDesk.employeeId,
+          firstName: this.editDesk.firstName, lastName: this.editDesk.lastName,
           building_name: this.editDesk.building_name, floor_name: this.editDesk.floor_name,
           office_name: this.editDesk.office_name, desk_id: this.editDesk.desk_id,
           bookingDate: this.editDesk.bookingDate,
@@ -91,6 +95,9 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
   private initForm(): void {
     this.form = new FormGroup({
       id: new FormControl({ value: '', disabled: true }),
+      employeeId: new FormControl('', Validators.required),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
       building_name: new FormControl('', Validators.required),
       floor_name: new FormControl('', Validators.required),
       office_name: new FormControl('', Validators.required),
@@ -116,7 +123,9 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
     return this.form.controls['bookingDate']
   }
 
- 
+  get employee_id() {
+    return this.form.controls['employeeId']
+  }
 
   get id() {
     return this.form.controls['id']
@@ -148,8 +157,6 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
     console.log('Form Valid:', this.form.valid);
     console.log('Form Values:', this.form.value);
   }
-
-
   closeDeskPop() {
     this.dialog.closeAll();
   }

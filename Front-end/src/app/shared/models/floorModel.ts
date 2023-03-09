@@ -5,14 +5,8 @@ export interface FloorModel {
     floor_name: string;
     building_name: string;
     bookingDate: DateTimePickerModule,
-    employee_id: string;
-    offices: {
-      office_name: string;
-      capacity: number;
-      desks: {
-        desk_id: string;
-        occupied: boolean;
-      }
-    }
-  }
+    office_name: string;
+    desk_id: string;
+   }
+  
 

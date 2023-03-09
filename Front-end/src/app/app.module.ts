@@ -9,9 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FloorComponent } from './features/floor/floor.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BarComponent } from './logRocket/bar/bar.component';
-import { PieComponent } from './logRocket/pie/pie.component';
-import { ScatterComponent } from './logRocket/pie/scatter/scatter.component';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -22,16 +20,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { LoginComponent } from './features/login/login.component';
 import { LogoutComponent } from './features/logout/logout.component';
 import { AuthService } from './shared/services/auth.service';
-
+import { ToastrModule} from 'ngx-toastr'
+import { AuthGuard } from './shared/guard.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FloorComponent,
-    BarComponent,
-    PieComponent,
-    ScatterComponent,
+ 
     NavComponent, 
     LoginComponent, 
     LogoutComponent,
@@ -39,7 +36,7 @@ import { AuthService } from './shared/services/auth.service';
 
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
-    AuthService
+    AuthService, AuthGuard
   ],
 
   bootstrap: [AppComponent],
@@ -55,7 +52,8 @@ import { AuthService } from './shared/services/auth.service';
     DateTimePickerModule,
     MatIconModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
   ],
 })
 export class AppModule { }

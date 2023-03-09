@@ -1,0 +1,31 @@
+h3 {
+  padding-top: 4px;
+}
+
+#desk-form {
+  overflow-y: hidden;
+  height: 10%;
+
+  .form-full-width {
+    width: 97%;
+    margin: 0px 0px;
+  }
+
+  .form-control {
+    width: 50px;
+    border-radius: 8px;
+    padding: 5px;
+  }
+
+  #form-button-row {
+    margin-left: 5px;
+    .form-action-button {
+      margin-right: 15px;
+    }
+  }
+}
+
+td {
+  padding: 3px;
+  border: 1px solid gray;
+}
