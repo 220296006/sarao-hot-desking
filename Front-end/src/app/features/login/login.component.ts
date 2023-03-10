@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Inject, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { RouteConfigLoadEnd, Router } from '@angular/router';
-import { faUser, faEnvelope, faPhone, faUserTie, faLock } from '@fortawesome/free-solid-svg-icons';
-import $ from 'jquery';
-import { DeskService } from 'src/app/shared/services/desk.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NgSelectOption, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { DeskService } from 'src/app/shared/services/desk.service';
+import { RegistrationComponent } from '../registration/registration.component';
+import { HttpClient } from '@angular/common/http';
 
 export interface userModel {
   users: User[];
@@ -30,56 +31,13 @@ export interface User {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => LoginComponent),
+      useExisting: forwardRef(() => RegistrationComponent),
       multi: true,
     }
   ]
 })
+
 export class LoginComponent implements OnInit, ControlValueAccessor {
-
-  @Input() userModel: userModel = { users: [] };
-  users: User[] = [];
-  onChange: any = () => { };
-  onTouched: any = () => { };
-  editId: any;
-  editUser: any;
-  input!: any;
-  faUser = faUser;
-  faEnvelope = faEnvelope;
-  faPhone = faPhone;
-  faUserTie = faUserTie;
-  faLock = faLock;
-  sarao: string = "C:/Users/thabi/Desktop/Python/sarao-hot-desking/Front-end/src/assets/sarao.png";
-  public form!: FormGroup;
-
-  constructor(private builder: FormBuilder, private service: DeskService,
-    private authService: AuthService,
-    private router: Router, private toastr: ToastrService) { }
-
-  user: any = {};
-  writeValue(input: any): void {
-    if (input) {
-      this.users = input.users;
-      this.form.patchValue({
-        employeeId: input.employeeId,
-        firstName: input.firstName,
-        lastName: input.lastName,
-        email: input.email,
-        phoneNumber: input.phoneNumber,
-        position: input.position,
-        password: input.password,
-        passwordConfirmation: input.passwordConfirmation
-      })
-    }
-  }
-  registerOnChange(fn: (users: User[]) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: (users: User[]) => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState?(isDisabled: boolean): void {
-  }
 
   $function() {
     $('input, select').on('focus', function () {
@@ -90,97 +48,95 @@ export class LoginComponent implements OnInit, ControlValueAccessor {
     });
   };
 
+  @Input() userModel: userModel = { users: [] };
+  users: User[] = [];
+  onChange: any = () => { };
+  onTouched: any = () => { };
+  editId: any;
+  editUser: any;
+  input!: any;
+  faUser = faUser;
+  faLock = faLock;
+  user: any = {};
+
+  constructor(private builder: FormBuilder, private service: DeskService,
+    private authService: AuthService, private http: HttpClient,
+    private router: Router, private toastr: ToastrService) { }
+
+  writeValue(input: any): void {
+    if (input) {
+      this.users = input.users;
+      this.form.patchValue({
+        firstName: input.firstName,
+        password: input.password,
+      })
+    }
+  }
+  registerOnChange(fn: (users: User[]) => void): void {
+    this.onChange = fn;
+
+  }
+  registerOnTouched(fn: (users: User[]) => void): void {
+    this.onTouched = fn;
+
+  }
+  setDisabledState?(isDisabled: boolean): void {
+  }
+
   ngOnInit(): void {
     this.initForm();
+    console.log(this.form.controls)
     if (this.user.id != '' && this.user.id != null) {
       this.service.getByEmployeeId(this.user.id).subscribe(response => {
         this.editUser = response;
         this.form.setValue({
           id: this.editUser.id, employeeId: this.editUser.employeeId,
           firstName: this.editUser.firstName,
-          lastName: this.editUser.lastName, 
-          email: this.editUser.email,
-          phoneNumber: this.editUser.phoneNumber,
-          position: this.editUser.position, password: this.editUser.password,
-          passwordConfirmation: this.editUser.passwordConfirmation,
+          pasword: this.editUser.password,
         });
       });
     }
   }
 
-private initForm(): void {
-  this.form = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
-    employeeId: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    phoneNumber: new FormControl('', Validators.required),
-    position: new FormControl('', Validators.required),
-    password: new FormControl('',Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])),
-    passwordConfirmation: new FormControl('', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
-  });
-}
+  public form!: FormGroup;
 
-  get employeeId() {
-    return this.form.controls['employeeId']
+  private initForm(): void {
+    this.form = new FormGroup({
+      id: new FormControl({ value: '', disabled: true }),
+      firstName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])),
+    });
   }
 
   get firstName() {
     return this.form.controls['firstName']
   }
 
-  get lastName() {
-    return this.form.controls['lastName']
-  }
-
-  get email() {
-    return this.form.controls['email']
-  }
-
-  get phoneNumber() {
-    return this.form.controls['phoneNumber']
-  }
-
-  get position() {
-    return this.form.controls['position']
-  }
-
   get password() {
     return this.form.controls['password']
   }
 
-  get passwordConfirmation() {
-    return this.form.controls['passwordConfirmation']
+  onLogin() {
+    this.http.get<any>("http://127.0.0.1:8000/api/users")
+      .subscribe({
+        next: (response) => {
+          const user = response.find((a: any) => {
+            return a.firstName === this.form.value && a.password === this.form.value.password
+          });
+          if (user) {
+            alert("Login Successful");
+            this.form.reset();
+            this.router.navigate(['nav']);
+          }
+          else {
+            alert("user not found")
+          }
+        },
+        error: (error) => {
+          alert("Something went wrong")
+        }
+      });
   }
 
-  @Input() positionOptions: Array<string> = ["Administrator", "Junior Software Engineer",
-    "Senior Software Engineer", "Scrum Master", "Accountant", "Project Manager", "Scientist"];
-
-
-  saveUserData() {
-    if (this.form.value) {
-      const editId = this.form.getRawValue().id;
-      if (editId != '' && editId != null) {
-        this.service.updateByEmployeeId(editId, this.form.getRawValue()).subscribe(response => {
-          this.toastr.success('Registered successfully')
-          this.router.navigate(['/home'])
-        });
-      } else {
-        this.service.saveUserData(this.form.value).subscribe(response => {
-        });
-      }
-      console.log('Form Valid:', this.form.valid);
-      console.log('Form Values:', this.form.value);
-    }
-    const token = this.authService.authUser(this.form.value);
-    if (token) {
-      localStorage.setItem('token', token.firstName)
-      this.router.navigate(['/home'])
-      console.log('Login Success')
-    } else {
-      console.log('Login Failed', this.form.value)
-    }
-  }
 }
 
