@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NgSelectOption, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { DeskService } from 'src/app/shared/services/desk.service';
-import { RegistrationComponent } from '../registration/registration.component';
 import { HttpClient } from '@angular/common/http';
 
 export interface userModel {
@@ -31,7 +30,7 @@ export interface User {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RegistrationComponent),
+      useExisting: forwardRef(() => LoginComponent),
       multi: true,
     }
   ]
@@ -124,9 +123,9 @@ export class LoginComponent implements OnInit, ControlValueAccessor {
             return a.firstName === this.form.value && a.password === this.form.value.password
           });
           if (user) {
-            alert("Login Successful");
+            this.toastr.success("Login Successful");
             this.form.reset();
-            this.router.navigate(['nav']);
+            this.router.navigate(['/home']);
           }
           else {
             alert("user not found")

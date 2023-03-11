@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor() { }
 
-  authUser(user: any) {
+   authUser(user: any) {
    let userArray = [];
    if(localStorage.getItem('users')){
     userArray = JSON.parse(localStorage.getItem('users') as string);

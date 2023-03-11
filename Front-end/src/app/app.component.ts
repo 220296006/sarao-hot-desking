@@ -10,7 +10,6 @@ LogRocket.init('hfebmb/sarao-hotdesking');
 export class AppComponent {
   title = 'SARAO Hotdesking';
 }
-
 LogRocket.identify('Thabiso Matsaba',{
   name: 'Thabiso Matsaba',
   email:'Thabisomatsaba96@gmail.com',

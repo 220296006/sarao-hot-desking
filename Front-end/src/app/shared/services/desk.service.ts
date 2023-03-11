@@ -47,7 +47,7 @@ export class DeskService {
     return this.http.put(`${this.url_Floors}/${id}`, data);
   }
 
-  saveUserData(user: any) {
+  onRegistration(user: any) {
     console.log(user);
     return this.http.post(this.url_Users, user);
   }
@@ -59,6 +59,10 @@ export class DeskService {
 
   isloggedin(){
     return sessionStorage.getItem('firstName')!=null;
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
   }
 
   getrole(){

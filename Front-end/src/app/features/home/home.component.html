@@ -1,6 +1,6 @@
 
 <div  align="center">
-<a mat-raised-button color="" (click)="bookDesk('')" style="margin: 1%">Book Desk</a>
+<a mat-raised-button color="" (click)="bookDesk('')"  style="margin: 1%">Book Desk</a>
 </div>
 
 <table mat-table [dataSource]="tableDataSource" matSort class="mat-elevation-z8" [hidden]="false">
@@ -12,17 +12,17 @@
   
   <ng-container matColumnDef="employeeId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </th>
-    <td mat-cell *matCellDef="let row"> {{row.employeeId }}</td>
+    <td mat-cell *matCellDef="let user of users"> {{user.employeeId }}</td>
   </ng-container>
 
   <ng-container matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-    <td mat-cell *matCellDef="let row"> {{row.firstName }}</td>
+    <td mat-cell *matCellDef="let user of users"> {{user.firstName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-    <td mat-cell *matCellDef="let row"> {{row.lastName }}</td>
+    <td mat-cell *matCellDef="let user of users"> {{user.lastName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="floor_name">
@@ -37,19 +37,14 @@
 
   <ng-container matColumnDef="office_name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Office Name</th>
-    <td mat-cell *matCellDef="let row">
-     
-        {{ row.office_name }}
+    <td mat-cell *matCellDef="let row"> {{ row.office_name }}
     </td>
   </ng-container>
 
 
   <ng-container matColumnDef="desk_id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Desk Id</th>
-    <td mat-cell *matCellDef="let row">
-     
-          {{row.desk_id }}
-    
+    <td mat-cell *matCellDef="let row"> {{row.desk_id }}
     </td>
   </ng-container>
 

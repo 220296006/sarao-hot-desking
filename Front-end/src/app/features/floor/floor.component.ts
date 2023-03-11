@@ -41,7 +41,13 @@ export class FloorComponent implements OnInit, ControlValueAccessor {
   officeCapacity: number = 16;
   occupied: boolean = false;
 
+  userData: { employeeId: string; firstName: string; position: string }[] = [];
 
+  onFormSubmit($event: any) {
+    this.userData.push($event);
+    console.log(this.userData.values);
+  }
+  
   decrementCapacity() {
     if (this.officeCapacity <= 16 ) {
       this.officeCapacity--;

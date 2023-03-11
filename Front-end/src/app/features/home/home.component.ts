@@ -60,14 +60,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
   updateDesk(id: any){
-      //this.service.updateByDeskId(id).subscribe(response => {
       this.bookDesk(id)
-     //})
   }
   deleteDesk(id: any) {
     this.service.removeByDeskId(id).subscribe(response => {
       this.loadDesk();
+      console.log('Deleted');
     })
   }
 }
